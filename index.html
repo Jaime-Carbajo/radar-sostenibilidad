@@ -1,0 +1,39 @@
+---
+layout: base
+title: Radar de Sostenibilidad Calidalia
+---
+{%- assign radares = site.radares | where: "publicado", true | sort: "numero" | reverse -%}
+
+<section class="hero">
+  <div class="wrap">
+    <div class="rule"></div>
+    <h1>{{ site.data.ajustes.titulo_portada | default: "Radar de Sostenibilidad" }}</h1>
+    <p class="lead">{{ site.data.ajustes.subtitulo_portada | default: "Archivo de las ediciones ESG de Calidalia. Cada radar reúne las novedades de sostenibilidad del sector agroalimentario." }}</p>
+  </div>
+</section>
+
+<section class="lista">
+  <div class="wrap">
+    {% if radares.size > 0 %}
+      {% for r in radares %}
+      <a class="radar-card" href="{{ r.url | relative_url }}">
+        <div class="rc-num">
+          <small>Radar</small>
+          {{ r.numero }}
+        </div>
+        <div>
+          <p class="rc-meta">{% include fecha_es.html f=r.fecha %}</p>
+          <h2 class="rc-title">{{ r.titulo }}</h2>
+          {% if r.resumen and r.resumen != "" %}<p class="rc-sum">{{ r.resumen | strip_html | truncate: 220 }}</p>{% endif %}
+          <span class="rc-go">Ver radar</span>
+        </div>
+      </a>
+      {% endfor %}
+    {% else %}
+      <div class="vacio">
+        <strong>Todavía no hay radares publicados.</strong>
+        El primer radar aparecerá aquí en cuanto se publique desde el editor.
+      </div>
+    {% endif %}
+  </div>
+</section>

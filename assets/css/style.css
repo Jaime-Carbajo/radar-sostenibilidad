@@ -1,0 +1,204 @@
+/* ============================================================
+   Radar de Sostenibilidad Calidalia
+   Identidad: minimalista, profesional, editorial.
+   Colores corporativos:
+     --azul:    #003057   --amarillo: #FFD100   --blanco: #FFFFFF
+   Tipografía corporativa: Gill Sans MT.
+   Gill Sans MT es una fuente con licencia (Monotype) y no puede
+   incrustarse para lectores externos. Se usa cuando está instalada
+   y, si no, una alternativa humanista próxima (Hanken Grotesk).
+   ============================================================ */
+
+:root{
+  --azul:#003057;
+  --azul-90:#0b3d63;
+  --azul-08:rgba(0,48,87,.08);
+  --azul-04:rgba(0,48,87,.04);
+  --amarillo:#FFD100;
+  --blanco:#FFFFFF;
+  --tinta:#1c2b36;
+  --gris:#5b6772;
+  --amarillo-ink:#a98a00;
+  --linea:rgba(0,48,87,.14);
+  --maxw:920px;
+  --font: "Gill Sans MT","Gill Sans Nova","Gill Sans",Calibri,
+          "Hanken Grotesk","Segoe UI",system-ui,-apple-system,sans-serif;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--font);
+  color:var(--tinta);
+  background:var(--blanco);
+  line-height:1.65;
+  font-size:18px;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--azul);text-underline-offset:3px;text-decoration-thickness:1px}
+a:hover{color:var(--azul-90)}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+
+/* ---------- Cabecera ---------- */
+.site-header{
+  background:var(--blanco);
+  border-bottom:1px solid var(--linea);
+  position:sticky;top:0;z-index:20;
+}
+.site-header .wrap{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:20px;padding-top:18px;padding-bottom:18px;
+}
+.site-header .logo img{height:38px;width:auto}
+.site-header .kicker{
+  font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--azul);font-weight:600;white-space:nowrap;
+  border-left:2px solid var(--amarillo);padding-left:14px;
+}
+@media(max-width:640px){
+  .site-header .kicker{display:none}
+  .site-header .logo img{height:32px}
+}
+
+/* ---------- Bloque de portada ---------- */
+.hero{
+  padding:72px 0 56px;
+  border-bottom:1px solid var(--linea);
+  background:
+    radial-gradient(120% 90% at 100% 0%,var(--azul-04),transparent 60%);
+}
+.hero h1{
+  font-size:clamp(2rem,5vw,3.1rem);
+  line-height:1.1;color:var(--azul);
+  font-weight:700;letter-spacing:-.01em;max-width:18ch;
+}
+.hero .lead{
+  margin-top:18px;font-size:1.15rem;color:var(--gris);max-width:52ch;
+}
+.hero .rule{width:60px;height:4px;background:var(--amarillo);margin-bottom:28px;border-radius:2px}
+
+/* ---------- Listado de radares ---------- */
+.lista{padding:8px 0 80px}
+.radar-card{
+  display:grid;grid-template-columns:auto 1fr;gap:28px;
+  align-items:start;padding:34px 0;border-bottom:1px solid var(--linea);
+  text-decoration:none;color:inherit;
+}
+.radar-card:hover .rc-title{color:var(--azul);text-decoration:underline}
+.rc-num{
+  font-size:clamp(2.4rem,6vw,3.4rem);font-weight:700;color:var(--azul);
+  line-height:1;min-width:2.2ch;text-align:right;
+  font-variant-numeric:tabular-nums;
+}
+.rc-num small{display:block;font-size:.62rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--amarillo-ink,#9a7d00);
+  font-weight:700;margin-bottom:6px;text-align:right}
+.rc-meta{font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--gris);font-weight:600}
+.rc-title{font-size:1.5rem;line-height:1.25;color:var(--tinta);
+  margin:8px 0 6px;font-weight:600}
+.rc-sum{color:var(--gris);font-size:1rem}
+.rc-go{display:inline-block;margin-top:14px;font-weight:600;
+  color:var(--azul);font-size:.95rem}
+.rc-go::after{content:" →";color:var(--amarillo-ink,#a98a00)}
+@media(max-width:560px){
+  .radar-card{grid-template-columns:1fr;gap:6px}
+  .rc-num{text-align:left;font-size:2.2rem}
+  .rc-num small,.rc-num{text-align:left}
+}
+
+/* ---------- Página de radar ---------- */
+.page-head{padding:60px 0 34px;border-bottom:1px solid var(--linea)}
+.breadcrumb{font-size:.85rem;color:var(--gris);margin-bottom:22px}
+.breadcrumb a{font-weight:600;text-decoration:none}
+.breadcrumb a:hover{text-decoration:underline}
+.eyebrow{font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--azul);font-weight:700}
+.eyebrow .dot{color:var(--amarillo-ink,#b08e00)}
+.page-head h1{font-size:clamp(1.9rem,4.5vw,2.7rem);color:var(--azul);
+  line-height:1.15;margin:14px 0 12px;font-weight:700;letter-spacing:-.01em}
+.page-head .date{font-size:.95rem;color:var(--gris);font-weight:600;
+  text-transform:capitalize}
+.page-head .intro{margin-top:20px;font-size:1.1rem;color:var(--gris);
+  max-width:60ch}
+
+.indice{padding:40px 0 90px}
+.indice h2{font-size:.85rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--gris);font-weight:700;margin-bottom:6px}
+.idx-item{display:flex;gap:20px;align-items:baseline;
+  padding:22px 0;border-bottom:1px solid var(--linea);
+  text-decoration:none;color:inherit}
+.idx-item:hover .idx-title{text-decoration:underline}
+.idx-n{color:var(--amarillo-ink,#a98a00);font-weight:700;
+  font-variant-numeric:tabular-nums;min-width:2ch}
+.idx-title{font-size:1.22rem;color:var(--azul);font-weight:600;line-height:1.3}
+.idx-pdf{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--gris);margin-left:auto;white-space:nowrap;align-self:center;
+  border:1px solid var(--linea);padding:3px 9px;border-radius:999px}
+
+/* ---------- Página de subsección ---------- */
+article.subseccion{padding:54px 0 30px}
+article.subseccion h1{font-size:clamp(1.8rem,4.2vw,2.5rem);color:var(--azul);
+  line-height:1.18;margin:14px 0 24px;font-weight:700;letter-spacing:-.01em}
+.prosa{font-size:1.075rem;color:var(--tinta)}
+.prosa>*+*{margin-top:1.15em}
+.prosa h2{font-size:1.5rem;color:var(--azul);margin-top:1.8em;font-weight:700}
+.prosa h3{font-size:1.2rem;color:var(--azul);margin-top:1.6em;font-weight:700}
+.prosa ul,.prosa ol{padding-left:1.3em}
+.prosa li+li{margin-top:.4em}
+.prosa blockquote{border-left:3px solid var(--amarillo);
+  padding:.2em 0 .2em 1.1em;color:var(--gris);font-style:italic}
+.prosa img{border-radius:6px;margin:1.4em 0}
+.prosa table{border-collapse:collapse;width:100%;font-size:.95rem}
+.prosa th,.prosa td{border:1px solid var(--linea);padding:9px 12px;text-align:left}
+.prosa th{background:var(--azul-04);color:var(--azul)}
+.prosa a{font-weight:600}
+.prosa code{background:var(--azul-08);padding:.1em .4em;border-radius:4px;
+  font-size:.9em}
+
+.adjunto{display:flex;align-items:center;gap:14px;margin:34px 0;
+  border:1px solid var(--linea);border-left:4px solid var(--amarillo);
+  padding:16px 20px;border-radius:6px;text-decoration:none;color:var(--azul);
+  font-weight:600;background:var(--azul-04)}
+.adjunto:hover{background:var(--azul-08)}
+.adjunto .ic{font-size:1.3rem}
+.adjunto small{display:block;font-weight:500;color:var(--gris);
+  text-transform:uppercase;letter-spacing:.1em;font-size:.68rem;margin-top:2px}
+
+.enlace-ext{margin:26px 0}
+.enlace-ext a{font-weight:600}
+
+/* Caja "enlace para la newsletter" */
+.zoho{margin:46px 0 10px;border:1px dashed var(--linea);border-radius:8px;
+  padding:20px 22px;background:var(--azul-04)}
+.zoho .lbl{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--azul);font-weight:700;margin-bottom:10px}
+.zoho .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.zoho input{flex:1;min-width:240px;font-family:var(--font);font-size:.92rem;
+  padding:11px 13px;border:1px solid var(--linea);border-radius:6px;
+  background:var(--blanco);color:var(--tinta)}
+.zoho button{font-family:var(--font);font-weight:700;font-size:.9rem;
+  padding:11px 18px;border:0;border-radius:6px;background:var(--azul);
+  color:var(--blanco);cursor:pointer}
+.zoho button:hover{background:var(--azul-90)}
+.zoho button.ok{background:var(--amarillo);color:var(--azul)}
+
+/* ---------- Pie ---------- */
+.site-footer{background:var(--azul);color:rgba(255,255,255,.78);
+  margin-top:40px}
+.site-footer .wrap{padding:46px 24px;display:flex;
+  align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.site-footer img{height:30px;width:auto;opacity:.95}
+.site-footer .ft-text{font-size:.85rem;max-width:46ch}
+.site-footer a{color:var(--amarillo)}
+
+/* ---------- Estados vacíos ---------- */
+.vacio{padding:70px 0 90px;color:var(--gris);text-align:center}
+.vacio strong{color:var(--azul);display:block;font-size:1.2rem;margin-bottom:6px}
+
+.placeholder-flag{background:var(--amarillo);color:var(--azul);
+  font-size:.74rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  text-align:center;padding:8px 16px}

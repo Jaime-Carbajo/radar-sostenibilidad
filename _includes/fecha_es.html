@@ -1,0 +1,4 @@
+{%- assign _parts = include.f | split: "-" -%}
+{%- assign _meses = "enero,febrero,marzo,abril,mayo,junio,julio,agosto,septiembre,octubre,noviembre,diciembre" | split: "," -%}
+{%- assign _mi = _parts[1] | times: 1 | minus: 1 -%}
+{{- _meses[_mi] }} de {{ _parts[0] -}}

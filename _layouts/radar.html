@@ -1,0 +1,47 @@
+---
+layout: base
+---
+{%- assign _num = page.numero | append: '' -%}
+{%- assign subs_all = site.subsecciones | sort: "orden" -%}
+{%- assign _count = 0 -%}
+{%- for s in subs_all -%}
+  {%- assign _sr = s.radar | append: '' -%}
+  {%- if _sr == _num and s.publicado -%}{%- assign _count = _count | plus: 1 -%}{%- endif -%}
+{%- endfor -%}
+
+<div class="page-head">
+  <div class="wrap">
+    <p class="breadcrumb"><a href="{{ '/' | relative_url }}">← Todos los radares</a></p>
+    <p class="eyebrow">Radar <span class="dot">·</span> Nº&nbsp;{{ page.numero }}</p>
+    <h1>{{ page.titulo }}</h1>
+    <p class="date">{% include fecha_es.html f=page.fecha %}</p>
+    {% if page.resumen and page.resumen != "" %}
+      <p class="intro">{{ page.resumen }}</p>
+    {% endif %}
+  </div>
+</div>
+
+<section class="indice">
+  <div class="wrap">
+    <h2>Contenidos de este radar</h2>
+    {% if _count > 0 %}
+      {% assign _i = 0 %}
+      {% for s in subs_all %}
+        {% assign _sr = s.radar | append: '' %}
+        {% if _sr == _num and s.publicado %}
+          {% assign _i = _i | plus: 1 %}
+      <a class="idx-item" href="{{ s.url | relative_url }}">
+        <span class="idx-n">{{ _i }}</span>
+        <span class="idx-title">{{ s.titulo }}</span>
+        {% if s.pdf and s.pdf != "" %}<span class="idx-pdf">PDF</span>{% endif %}
+      </a>
+        {% endif %}
+      {% endfor %}
+    {% else %}
+      <div class="vacio">
+        <strong>Este radar aún no tiene contenidos publicados.</strong>
+        Añade subsecciones desde el editor para que aparezcan aquí.
+      </div>
+    {% endif %}
+  </div>
+</section>

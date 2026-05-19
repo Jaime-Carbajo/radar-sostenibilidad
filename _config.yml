@@ -1,0 +1,46 @@
+# ============================================================
+#  Radar de Sostenibilidad Calidalia — configuración del sitio
+# ============================================================
+# IMPORTANTE: ajusta "baseurl" al nombre EXACTO de tu repositorio.
+# Si el repo se llama "radar-sostenibilidad", déjalo así.
+# Si lo subes a otro repo, cambia esta línea (con la barra inicial).
+# Si algún día usas un dominio propio, pon baseurl: ""
+
+title: "Radar de Sostenibilidad Calidalia"
+description: "Archivo de ediciones ESG de Calidalia"
+url: "https://jaime-carbajo.github.io"
+baseurl: "/radar-sostenibilidad"
+
+lang: es
+
+# Sin tema por defecto: usamos nuestros propios layouts (marca Calidalia)
+theme: null
+plugins: []
+
+# --- Colecciones de contenido (las gestiona Pages CMS) ---
+collections:
+  radares:
+    output: true
+    permalink: /radar/:name/
+  subsecciones:
+    output: true
+    permalink: /r/:name/
+
+defaults:
+  - scope: { path: "", type: "radares" }
+    values: { layout: "radar" }
+  - scope: { path: "", type: "subsecciones" }
+    values: { layout: "subseccion" }
+
+# --- Construcción ---
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+
+exclude:
+  - README.md
+  - .pages.yml
+  - Gemfile
+  - Gemfile.lock
+  - vendor

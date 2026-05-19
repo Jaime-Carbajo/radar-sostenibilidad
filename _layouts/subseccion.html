@@ -1,0 +1,65 @@
+---
+layout: base
+---
+{%- assign _rad = page.radar | append: '' -%}
+{%- assign padre = nil -%}
+{%- for r in site.radares -%}
+  {%- assign _rn = r.numero | append: '' -%}
+  {%- if _rn == _rad -%}{%- assign padre = r -%}{%- endif -%}
+{%- endfor -%}
+
+<article class="subseccion">
+  <div class="wrap">
+    <p class="breadcrumb">
+      <a href="{{ '/' | relative_url }}">Radares</a>
+      &nbsp;›&nbsp;
+      {% if padre %}
+        <a href="{{ padre.url | relative_url }}">Radar Nº {{ padre.numero }} — {{ padre.titulo }}</a>
+      {% else %}
+        <a href="{{ '/' | relative_url }}">Radar Nº {{ page.radar }}</a>
+      {% endif %}
+    </p>
+
+    <p class="eyebrow">Radar <span class="dot">·</span> Nº&nbsp;{{ page.radar }}</p>
+    <h1>{{ page.titulo }}</h1>
+
+    <div class="prosa">
+      {{ content }}
+    </div>
+
+    {% if page.pdf and page.pdf != "" %}
+    <a class="adjunto" href="{{ page.pdf | relative_url }}" target="_blank" rel="noopener">
+      <span class="ic">⬇</span>
+      <span>Descargar documento adjunto
+        <small>PDF</small>
+      </span>
+    </a>
+    {% endif %}
+
+    {% if page.enlace_externo and page.enlace_externo != "" %}
+    <p class="enlace-ext">
+      Recurso externo relacionado:
+      <a href="{{ page.enlace_externo }}" target="_blank" rel="noopener">{{ page.enlace_externo }}</a>
+    </p>
+    {% endif %}
+
+    <div class="zoho">
+      <div class="lbl">Enlace para la newsletter (pégalo en Zoho Campaigns)</div>
+      <div class="row">
+        <input id="zoho-url" type="text" readonly value="{{ page.url | absolute_url }}">
+        <button type="button" onclick="copiarZoho(this)">Copiar enlace</button>
+      </div>
+    </div>
+  </div>
+</article>
+
+<script>
+function copiarZoho(btn){
+  var i=document.getElementById('zoho-url');
+  i.select(); i.setSelectionRange(0,99999);
+  var done=function(){var t=btn.textContent;btn.textContent='¡Copiado!';btn.classList.add('ok');
+    setTimeout(function(){btn.textContent=t;btn.classList.remove('ok');},1800);};
+  if(navigator.clipboard){navigator.clipboard.writeText(i.value).then(done,function(){document.execCommand('copy');done();});}
+  else{document.execCommand('copy');done();}
+}
+</script>

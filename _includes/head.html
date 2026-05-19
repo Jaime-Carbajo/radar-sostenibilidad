@@ -1,0 +1,21 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="index, follow">
+{% if page.titulo %}
+  <title>{{ page.titulo }} · Radar de Sostenibilidad Calidalia</title>
+  <meta property="og:title" content="{{ page.titulo }} · Radar de Sostenibilidad Calidalia">
+{% else %}
+  <title>{{ page.title | default: site.title }}</title>
+  <meta property="og:title" content="{{ page.title | default: site.title }}">
+{% endif %}
+<meta name="description" content="{{ page.resumen | default: site.description }}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Radar de Sostenibilidad Calidalia">
+<meta property="og:image" content="{{ '/assets/img/logo-color.png' | absolute_url }}">
+<link rel="canonical" href="{{ page.url | absolute_url }}">
+<link rel="icon" type="image/png" href="{{ '/assets/img/logo-azul.png' | relative_url }}">
+<!-- Alternativa humanista próxima a Gill Sans MT para lectores que no la tengan instalada -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
