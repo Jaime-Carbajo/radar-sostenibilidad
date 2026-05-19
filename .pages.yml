@@ -1,0 +1,109 @@
+media:
+  input: assets/uploads
+  output: /assets/uploads
+
+content:
+  # ---------- 1. RADARES (los "tomos") ----------
+  - name: radares
+    label: "Radares"
+    type: collection
+    path: "_radares"
+    filename: "{fields.numero}.md"
+    view:
+      fields: [numero, titulo, fecha, publicado]
+      sort: [numero, fecha]
+      default:
+        sort: numero
+        order: desc
+    fields:
+      - name: numero
+        label: "Número del Radar"
+        type: number
+        required: true
+        description: "Solo el número, p. ej. 7. Define la URL del radar (/radar/7/) y no debe cambiarse una vez publicado."
+      - name: titulo
+        label: "Título del Radar"
+        type: string
+        required: true
+      - name: fecha
+        label: "Mes de publicación"
+        type: date
+        options:
+          format: "yyyy-MM"
+        required: true
+      - name: resumen
+        label: "Introducción (opcional)"
+        type: text
+        description: "Texto breve que aparece bajo el título del radar."
+      - name: publicado
+        label: "Publicado"
+        type: boolean
+        default: true
+        description: "Desmárcalo para guardarlo como borrador (no se verá en la web)."
+
+  # ---------- 2. SUBSECCIONES (las noticias) ----------
+  - name: subsecciones
+    label: "Subsecciones / Noticias"
+    type: collection
+    path: "_subsecciones"
+    filename: "radar-{fields.radar}-{fields.titulo}.md"
+    view:
+      fields: [titulo, radar, orden, publicado]
+      sort: [radar, orden]
+      default:
+        sort: radar
+        order: desc
+    fields:
+      - name: radar
+        label: "Número del Radar al que pertenece"
+        type: number
+        required: true
+        description: "El número del radar donde aparece esta noticia. Debe coincidir con un radar existente."
+      - name: orden
+        label: "Orden dentro del radar"
+        type: number
+        default: 1
+        description: "1 = primera, 2 = segunda, etc. Ordena las noticias dentro del radar."
+      - name: titulo
+        label: "Título de la noticia"
+        type: string
+        required: true
+      - name: contenido
+        label: "Contenido"
+        type: rich-text
+        required: true
+        options:
+          path: assets/uploads
+          extensions: [jpg, jpeg, png, gif, webp]
+        description: "El cuerpo completo. Permite negritas, listas, enlaces, imágenes y tablas."
+      - name: pdf
+        label: "PDF adjunto (opcional)"
+        type: file
+        options:
+          path: assets/uploads
+          extensions: [pdf]
+        description: "Documento descargable que se mostrará al final de la noticia."
+      - name: enlace_externo
+        label: "Enlace externo (opcional)"
+        type: string
+        description: "Si esta noticia enlaza a un recurso externo, pégalo aquí."
+      - name: publicado
+        label: "Publicado"
+        type: boolean
+        default: true
+
+  # ---------- 3. AJUSTES GLOBALES ----------
+  - name: ajustes
+    label: "Ajustes del sitio"
+    type: file
+    path: "_data/ajustes.yml"
+    fields:
+      - name: titulo_portada
+        label: "Título en la portada"
+        type: string
+      - name: subtitulo_portada
+        label: "Subtítulo en la portada"
+        type: text
+      - name: texto_pie
+        label: "Texto del pie de página"
+        type: string
