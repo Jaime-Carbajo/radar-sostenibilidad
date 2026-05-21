@@ -43,17 +43,31 @@ layout: base
     </p>
     {% endif %}
 
-    <div class="zoho">
+<div class="zoho" id="zoho-box" hidden>
       <div class="lbl">Enlace para la newsletter (pégalo en Zoho Campaigns)</div>
       <div class="row">
         <input id="zoho-url" type="text" readonly value="{{ page.url | absolute_url }}">
         <button type="button" onclick="copiarZoho(this)">Copiar enlace</button>
       </div>
+      <p class="zoho-hint">Visible solo para redactores (URL con <code>?edit</code>). Los socios no ven este recuadro.</p>
     </div>
   </div>
 </article>
 
 <script>
+(function(){
+  // El recuadro para copiar enlace a Zoho solo se muestra a redactores.
+  // Para activarlo, añadir ?edit al final de la URL. No es seguridad,
+  // es solo evitar ruido visual al lector final.
+  try{
+    var qs = window.location.search || "";
+    if (/(\?|&)edit(=|&|$)/.test(qs)) {
+      var box = document.getElementById('zoho-box');
+      if (box) box.hidden = false;
+    }
+  }catch(e){}
+})();
+
 function copiarZoho(btn){
   var i=document.getElementById('zoho-url');
   i.select(); i.setSelectionRange(0,99999);
