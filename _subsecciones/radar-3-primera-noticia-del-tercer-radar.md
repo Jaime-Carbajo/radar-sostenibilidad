@@ -5,7 +5,5 @@ titulo: Primera noticia del tercer radar
 contenido: |+
   Esto es una prueba de que funciona el editor de noticias
 
-  ![](</assets/uploads/Calidalia Logo Positivo_1.png>)
-
 publicado: true
 ---
